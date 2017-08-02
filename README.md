@@ -1,7 +1,8 @@
 ## StickyHeaderDecoration
 
 使用ItemDecoration技术实现的粘性头部，用于实现RecyclerView的分组效果。
-![Screen shoot](./SVID_20170802_161913.gif)
+
+ <img src="./SVID_20170802_161913.gif" width = "240" height = "360" alt="Screen shoot" align=center />
 
 #### 实现原理及优势？
 ItemDecoration 有两个绘制时机：`onDraw` 和 `onDrawOver`，其中`onDrawOver`是在item绘制完成之后。  
@@ -15,7 +16,12 @@ ItemDecoration 有两个绘制时机：`onDraw` 和 `onDrawOver`，其中`onDraw
 使用 ItemDecoration 技术可以解决这两个问题。
 
 #### 如何使用？
-很简单，就像加分割线一样清晰、简洁！
+可以拷贝核心类到工程中，也可以gradle依赖：
+```Groovy
+    compile 'org.mym.ui:sticky-header-decoration:0.1.0'
+```
+
+使用方法很简单，就像加分割线一样清晰、简洁！
 ```
     recyclerView.addItemDecoration(new StickyHeaderDecoration(headerAdapter));
 ```
