@@ -1,12 +1,14 @@
 package org.mym.stickyheaderdecoration;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,17 +18,40 @@ import org.mym.ui.decoration.library.StickyHeaderDecoration;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
+    private ItemAdapter mAdapter;
+    private StickyHeaderDecoration mDecoration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView recyclerView = ((RecyclerView) findViewById(R.id.main_recyclerView));
+        recyclerView = ((RecyclerView) findViewById(R.id.main_recyclerView));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ItemAdapter());
-        recyclerView.addItemDecoration(new StickyHeaderDecoration(
-                ((ItemAdapter) recyclerView.getAdapter())
-        ));
+        mAdapter = new ItemAdapter();
+        recyclerView.setAdapter(mAdapter);
+
+        mDecoration = new StickyHeaderDecoration(mAdapter);
+        recyclerView.addItemDecoration(mDecoration);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_invalidate) {
+//            mDecoration.invalidate();
+            mAdapter.appendDataAndNotifyChanged();
+//            recyclerView.invalidate();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     class ItemHolder extends RecyclerView.ViewHolder {
@@ -59,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
     class ItemAdapter extends RecyclerView.Adapter<ItemHolder> implements
             StickyHeaderAdapter<HeaderHolder> {
 
+        private int mItemCount = 30;
+
+        void appendDataAndNotifyChanged() {
+            mItemCount += 10;
+            notifyDataSetChanged();
+        }
+
         @Override
         public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
@@ -73,12 +105,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return 50;
+            return mItemCount;
         }
 
         @Override
         public long getHeaderId(int childAdapterPosition) {
-            return childAdapterPosition / 5;
+            return childAdapterPosition / 14;
         }
 
         @NonNull

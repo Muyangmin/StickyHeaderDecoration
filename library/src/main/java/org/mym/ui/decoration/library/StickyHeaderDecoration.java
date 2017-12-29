@@ -27,6 +27,13 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     }
 
     /**
+     * Clear header cache. This is useful for adapter data set changes.
+     */
+    public void invalidate() {
+        mHeaderCache.clear();
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

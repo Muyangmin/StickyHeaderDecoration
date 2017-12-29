@@ -4,6 +4,10 @@
 
  <img src="./SVID_20170802_161913.gif" width = "240" height = "360" alt="Screen shoot" align=center />
 
+## Versions
+#### 0.2.0 
+ * 增加一个invalidate方法，以
+
 #### 实现原理及优势？
 ItemDecoration 有两个绘制时机：`onDraw` 和 `onDrawOver`，其中`onDrawOver`是在item绘制完成之后。  
 **RecyclerView本身并没有提供可以固定某个item或者某个canvas的方法。** 
