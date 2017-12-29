@@ -1,5 +1,6 @@
 package org.mym.ui.decoration.library;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -28,6 +29,7 @@ public abstract class SimpleTextHeader implements StickyHeaderAdapter<SimpleHold
      * 默认会创建一个 TextView, 其水平 padding 为10dp，竖直 padding 为 8dp，
      * 使用 {@code colorPrimary} 来作为背景， {@code textColorPrimary} 为文字颜色。
      */
+    @SuppressLint("ResourceType")
     protected TextView createTextView(Context context) {
         TextView textView = new TextView(context);
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams

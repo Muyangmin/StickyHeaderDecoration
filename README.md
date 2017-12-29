@@ -1,4 +1,4 @@
-## StickyHeaderDecoration
+## StickyHeaderDecoration [ ![Download](https://api.bintray.com/packages/muyangmin/org.mym/DECORATION/images/download.svg) ](https://bintray.com/muyangmin/org.mym/DECORATION/_latestVersion)
 
 使用ItemDecoration技术实现的粘性(悬停)头部，用于实现RecyclerView的分组效果。
 
@@ -18,7 +18,7 @@ ItemDecoration 有两个绘制时机：`onDraw` 和 `onDrawOver`，其中`onDraw
 #### 使用方法
 首先，你需要将核心类导入到工程中，可以直接复制，但建议使用 gradle 依赖：
 ```Groovy
-    implementation 'org.mym.ui:sticky-header-decoration:0.2.0'
+    implementation 'org.mym.ui:sticky-header-decoration:${latest_version}'
 ```
 
 接下来，你需要提供一个分组逻辑实现接口，它的定义如下：
