@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.mym.ui.decoration.library.SimpleTextHeader;
 import org.mym.ui.decoration.library.StickyHeaderAdapter;
 import org.mym.ui.decoration.library.StickyHeaderDecoration;
 
@@ -31,7 +32,18 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ItemAdapter();
         recyclerView.setAdapter(mAdapter);
 
-        mDecoration = new StickyHeaderDecoration(mAdapter);
+//        mDecoration = new StickyHeaderDecoration(mAdapter);
+        mDecoration = new StickyHeaderDecoration(new SimpleTextHeader() {
+            @Override
+            protected CharSequence getHeaderContent(int childPos) {
+                return "Header " + getHeaderId(childPos);
+            }
+
+            @Override
+            public long getHeaderId(int childAdapterPosition) {
+                return childAdapterPosition / 14;
+            }
+        });
         recyclerView.addItemDecoration(mDecoration);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
